@@ -35,7 +35,7 @@ function App() {
     const starCountRef = ref(db, "places/", postID, "/");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      setCurrentLocation(data);
+      setCurrentLocation(data[postID]);
       console.log(data[postID]);
     });
   };
@@ -50,6 +50,8 @@ function App() {
         }}
         value={postID}
       />
+      <div>Lat:{currentLocation?.lat}</div>
+      <div>lng:{currentLocation?.lng}</div>
       <button onClick={fetchdata}>Start tracking</button>
     </>
   );
