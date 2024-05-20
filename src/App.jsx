@@ -11,7 +11,16 @@ import {
   push,
   update,
 } from "firebase/database";
-
+import {
+  useJsApiLoader,
+  GoogleMap,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
+const center = {
+  lat: 6.9271,
+  lng: 79.8612,
+};
 function App() {
   const firebaseConfig = {
     apiKey: "AIzaSyBeCx-gdsrweSb89zO9Hp6IxZpvmbVeFzg",
@@ -40,6 +49,10 @@ function App() {
     });
   };
 
+  // const { isLoaded } = useJsApiLoader({
+  //   id: "google-map-script",
+  //   googleMapsApiKey: "YOUR-API-KEY",
+  // });
   return (
     <>
       <input
@@ -50,9 +63,23 @@ function App() {
         }}
         value={postID}
       />
+
+      <button onClick={fetchdata}>Start tracking</button>
       <div>Lat:{currentLocation?.lat}</div>
       <div>lng:{currentLocation?.lng}</div>
-      <button onClick={fetchdata}>Start tracking</button>
+      {/* {isLoaded && (
+        <GoogleMap
+          center={center}
+          zoom={8}
+          mapContainerStyle={{ width: "100%", height: "100vh" }}
+          options={{
+            zoomControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+          }}
+        ></GoogleMap>
+      )} */}
     </>
   );
 }
